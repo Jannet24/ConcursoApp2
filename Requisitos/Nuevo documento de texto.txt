@@ -1,0 +1,9 @@
+Para correr la aplicación se debe te tener lo siguiente
+
+*La carpeta hotel en htdocs usando xammp.
+*Dentro de hotel en el archivo connector.php se hacen las configuraciones.
+*La base de datos hotel.sql 
+*Tener instalado ionic "npm install -g cordova ionic"
+*Entrar desdo consola a la carpeta ConcursoApp2 y 
+ejecutar ionic serve.
+

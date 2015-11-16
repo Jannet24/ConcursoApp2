@@ -9,11 +9,20 @@
             <hr>
             <!--a  class="button button-light button-block " ng-click="getEvents()">Entrar</a-->
         </div>
-       <h3>Lugar:</h3><h4>{{eventos}}</h4>
+       <h3>Lugar:</h3><h4>{{eventoDetalle.descripcion}}</h4>
        {{hola}}
        
         
-        
+            <div ng-controller="MapCtrl">
+    <google-map center="map.center" 
+                zoom="map.zoom" 
+                draggable="true" 
+                options="map.options" 
+                control="map.control">
+        <marker coords="marker.coords" options="marker.options" idkey="marker.id" ></marker>        
+    </google-map>
+</div
+
         
         
         

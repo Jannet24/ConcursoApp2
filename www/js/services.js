@@ -133,12 +133,14 @@ angular.module('app.services', [])
             method: 'POST',
             url: servidor +"reservacionesServiciosEventos.php",
 
-            data:{},
+            data:{
+                user: usuario
+            },
             
             dataType: "jsonp"
         }
     
-        $http.get(servidor +'reservacionesServiciosEventos.php') 
+        $http.get(servidor +'reservacionesServiciosEventos.php',data) 
             .success(function(result) {
                 console.log("Resultado de get.js")
                 console.log(result)
@@ -157,12 +159,15 @@ angular.module('app.services', [])
             method: 'POST',
             url: servidor +'reservacionesEventos.php',
 
-            data:{},
+            data:{
+                user: usuario
+            },
+            
             
             dataType: "jsonp"
         }
  
-        $http.get(servidor +'reservacionesEventos.php') 
+        $http.get(servidor +'reservacionesEventos.php',data) 
             .success(function(result) {
                 console.log("Resultado de servicessssssss.js")
                 console.log(result)
@@ -173,7 +178,6 @@ angular.module('app.services', [])
             
         },
         deleteReservacionesEventos:function(scope,http,state,popup,id) {
-            console.log("ssgzkh");
         var deferred = $q.defer();
         var promise = deferred.promise;
         var req = {
