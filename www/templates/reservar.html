@@ -7,5 +7,22 @@
             <a href="#/alarma" class="button button-stable button-block  icon ion-android-alarm-clock"></a>
             <a href="#/" class="button button-stable button-block  icon ion-ios-close-outline"></a>
         </div>
+        <div class="button" ng-repeat="servicio in servicios">
+          	<div class="item item-divider" ng-click="viewServise(servicio)"> {{servicio}}
+         	</div>
+         	
+         </div>
+         <div class="item card "ng-repeat="item in lis">
+          <div class="item item-divider">
+         	  {{item.servicio}} | {{item.tipo}}
+          </div>
+          <div class="item item-body">
+         	  <p>
+         		 <strong>Días: </strong>{{item.horaApertura}} - {{item.horaCierre}}
+         	  </p>
+              <a href="#/form/{{item.id}}">Reservar</a>
+         </div>
+		</div>
+
     </ion-content>
 </ion-view>

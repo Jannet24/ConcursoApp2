@@ -2,10 +2,7 @@ angular.module('app.routes', [])
 
 .config(function($stateProvider, $urlRouterProvider) {
 
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
+  // Comprueba si existe la ruta especificada, manda a la vista relacionada y le asigna el controlador
   $stateProvider
     
       
@@ -15,7 +12,12 @@ angular.module('app.routes', [])
       templateUrl: 'templates/login.html',
       controller: 'loginCtrl'
     })
-        
+    
+    .state('form', {
+      url: '/form/:id',
+      templateUrl: 'templates/form.html',
+      controller: 'formCtrl'
+    })    
       
     
       

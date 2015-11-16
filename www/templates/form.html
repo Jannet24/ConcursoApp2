@@ -1,20 +1,19 @@
-<ion-view title="Login">
+<ion-view title="Formulario">
     <ion-content padding="true" class="has-header">
         <form class="list">
-            <h1>Bienvenido</h1>
             <div class="spacer" style="width: 300px; height: 30px;"></div>
             <ion-list>
                 <label class="item item-input" name="user" >
-                    <span class="input-label">Usuario/Telefono</span>
-                    <input type="text" placeholder="" ng-model="data.username">
+                    <span class="input-label">Día: </span>
+                    <input type="date" placeholder="" ng-model="data.dia">
                 </label>
                 <label class="item item-input" name="password" >
-                    <span class="input-label">Password</span>
-                    <input type="password" placeholder="" ng-model="data.password">
+                    <span class="input-label">Hora: </span>
+                    <input type="time" placeholder="" ng-model="data.hora">
                 </label>
             </ion-list>
             <div class="spacer" style="width: 300px; height: 30px;"></div>
-            <a  class="button button-light button-block " ng-click="login(data)">Entrar</a>
+            <button-stable class="button" ng-click="reservation(data)">Reservar</button-stable>
         </form>
     </ion-content>
 </ion-view>

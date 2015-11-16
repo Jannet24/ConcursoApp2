@@ -7,5 +7,42 @@
             <a href="#/alarma" class="button button-stable button-block  icon ion-android-alarm-clock"></a>
             <a href="#/" class="button button-stable button-block  icon ion-ios-close-outline"></a>
         </div>
+        <p>
+           <div class="item card card"ng-repeat="servicios in reservacionesActivas">
+            <!--ion-delete-button class="ion-minus-circled" >
+
+        </ion-delete-button-->
+       <div class="item item-divider">
+        {{servicios.servicio}}
+         {{servicios.id}}
+       </div>
+       <div class="item item-body">
+          <a href="#/mas/{{eventos.id}}" class="button button-small" >Ver m&aacutes...</a>
+          <a class="button button-small"  ng-click="deleteServicios({{servicios.id}})">Eliminar</a>
+
+       </div>
+        
+ 
+        </div>
+</p>
+        <p>
+           <div class="item card card"ng-repeat="eventos in reservacionesActivasEventos">
+            <!--ion-delete-button class="ion-minus-circled" >
+
+        </ion-delete-button-->
+       <div class="item item-divider">
+
+        {{eventos.nombre}}
+         {{eventos.id}}
+       </div>
+       <div class="item item-body">
+          <a href="#/mas/{{eventos.id}}" class="button button-small" >Ver m&aacutes...</a>
+          <a  ng-click="deleteEventos({{eventos.id}})"class="button button-small" >Eliminar</a>
+
+       </div>
+        
+ 
+        </div>
+</p>
     </ion-content>
 </ion-view>
