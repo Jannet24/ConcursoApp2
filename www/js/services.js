@@ -61,19 +61,42 @@ angular.module('app.services', [])
             .success(function(result) {
                 scope.eventos= result;  
         });    
+        },
+        getDetalls: function(eventoID,scope,htt,state,popup,data) {
+
+            console.log(eventoID);
+        var deferred = $q.defer();
+        var promise = deferred.promise;
+        var req = {
+            method: 'POST',
+            url: servidor+'detalleEvento.php',
+
+            data:{id:eventoID},
+            
+            dataType: "jsonp"
+        }
+        $http(req)
+        .success(function(result) {
+                console.log("Resultado de serviceshh.js")
+                console.log(result)
+                scope.eventoDetalle= result;  
+
+        });
+    
+            
         }
     }}
 )
 //Obtiene las alarmas del usuario
 .service('alarmaService', function($q,$http) {
     return{
-    getAlarmas: function(scope,state,popup) {
+    getAlarmas: function(scope) {
         data= {user:usuario};
-        $http.get(servidor+'alarmas.php',data) 
-          /* .success(function(result) {
+        $http.post(servidor+'alarmas.php',data) 
+           .success(function(result) {
                 scope.alarmas = result; 
                 console.log(result); 
-        });   */ 
+        });    
         }
     }}
 )
@@ -85,8 +108,6 @@ angular.module('app.services', [])
     getServices: function(scope) {
         $http.get(servidor +'servicios.php') 
             .success(function(result) {
-                console.log(usuario);
-                console.log("Resultado de Reservaciones.js")
                 scope.listServices = result;
                $serviciosType = [];
                 for (var i = result.length - 1; i >= 0; i--) {
@@ -99,14 +120,12 @@ angular.module('app.services', [])
 
         },
         //Guarda la reservación 
-        setService:function(idService, diaService, horaService,popup){
+    setService:function(idService, diaService, horaService,popup){
             data={user : usuario , reservacion : idService, dia: diaService, hora:horaService},
             console.log(data);
             $http.post(servidor+'guardarServicio.php', data)
             .success(function(result) {
-                console.log("Resultado de setService.js")
-                console.log(result);
-                if(result == 'True'){
+                if(result[0]){
                     var alertPopup = popup.alert({
                     title: 'Reservado!'
                 })
@@ -125,106 +144,60 @@ angular.module('app.services', [])
 //Obtiene las reservaciones del usuario
 .service('reserv', function($q,$http) {
     return{
-    getReservacionesServicios: function(scope,http,state,popup,data) {
-
-        var deferred = $q.defer();
-        var promise = deferred.promise;
-        var req = {
-            method: 'POST',
-            url: servidor +"reservacionesServiciosEventos.php",
-
-            data:{
-                user: usuario
-            },
-            
-            dataType: "jsonp"
+    getReservacionesServicios: function(scope) {
+        var data={
+            user:usuario
         }
-    
-        $http.get(servidor +'reservacionesServiciosEventos.php',data) 
+        $http.post(servidor +'reservacionesServiciosEventos.php',data) 
             .success(function(result) {
-                console.log("Resultado de get.js")
-                console.log(result)
                 scope.reservacionesActivas= result;
-
-
         });
             
         },
-        getReservacionesEventos:function(scope,http,state,popup,data) {
-        console.log("entrooooooooooooooooo");
-
+    getReservacionesEventos:function(scope) {
         var deferred = $q.defer();
         var promise = deferred.promise;
-        var req = {
-            method: 'POST',
-            url: servidor +'reservacionesEventos.php',
-
-            data:{
-                user: usuario
-            },
-            
-            
-            dataType: "jsonp"
+        var data={
+            user:usuario
         }
- 
-        $http.get(servidor +'reservacionesEventos.php',data) 
+        $http.post(servidor +'reservacionesEventos.php',data) 
             .success(function(result) {
                 console.log("Resultado de servicessssssss.js")
                 console.log(result)
                 scope.reservacionesActivasEventos= result;
-
-
         });
-            
         },
-        deleteReservacionesEventos:function(scope,http,state,popup,id) {
+    deleteReservacionesEventos:function(scope,http,state,popup,id) {
         var deferred = $q.defer();
         var promise = deferred.promise;
         var req = {
             method: 'POST',
             url: servidor +'deleteEventos.php',
-
             data:{reservacion : id},
-            
             dataType: "jsonp"
         }
-        console.log(id);
- 
 
         $http(req)
         .success(function(result) {
-                console.log("Resultado de serviceshh.js")
-                console.log(result)
                 scope.eventoDetalle= result;  
-
         });
-            
         },
-        deleteReservacionesServicios:function(scope,http,state,popup,id) {
-        console.log("entrooooooooooooooooo");
-
+    deleteReservacionesServicios:function(scope,http,state,popup,id) {
         var deferred = $q.defer();
         var promise = deferred.promise;
         var req = {
             method: 'POST',
             url: servidor +'/deleteServicios.php',
-
             data:{reservacion : id},
             
             dataType: "jsonp"
         }
-        console.log(id);
- 
-
         $http(req)
         .success(function(result) {
-                console.log("Resultado de serviceshh.js")
-                console.log(result)
                 scope.eventoDetalle= result;  
 
         });
-            
-        }
+    }
 
 }}
 )

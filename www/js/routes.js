@@ -19,7 +19,11 @@ angular.module('app.routes', [])
       controller: 'formCtrl'
     })    
       
-    
+    .state('mas', {
+      url: '/mas/:eventoID',
+      templateUrl: 'templates/evento.html',
+      controller: 'eventoCtrl'
+    }) 
       
         
     .state('misReservaciones', {

@@ -1,4 +1,29 @@
-angular.module('app.controllers', [])
+angular.module('app.controllers', ['google-maps'])
+
+.controller('MapCtrl', ['$scope', function ($scope) {
+ 
+    $scope.map = {
+        center: {
+            latitude: 40.454018, 
+            longitude: -3.509205
+        }, 
+        zoom: 12,
+        options : {
+            scrollwheel: false
+        },
+        control: {}
+    };
+    $scope.marker = {
+        id: 0,
+        coords: {
+            latitude: 40.454018,
+            longitude: -3.509205
+        },
+        options: {
+            draggable: true
+        }
+    };
+}])
 
 .controller('loginCtrl', function($scope, LoginService, $ionicPopup, $state, $http) {
     $scope.data = {};
@@ -26,10 +51,9 @@ angular.module('app.controllers', [])
          else{}
        });
     }
-
 })
 
-   
+//Controlador para ves las reservaciones que tiene el hueped
 .controller('misReservacionesCtrl', function($scope, reserv, $ionicPopup, $state, $http) {
     $scope.data = {};
         reserv.getReservacionesServicios($scope,$http,$state,$ionicPopup,$scope.data)
@@ -41,11 +65,9 @@ angular.module('app.controllers', [])
     $scope.deleteServicios= function (id) {
        reserv.deleteReservacionesServicios($scope,$http,$state,$ionicPopup,id)
     }
-    
-
 })
    
-
+//Controlador de las posibles reservaciones que puede hacer el huesped
 .controller('reservarCtrl', function($scope,reservationService,$http) {
     reservationService.getServices($scope);
     //Lista los servicios que ofrece el hotel 
@@ -66,9 +88,16 @@ angular.module('app.controllers', [])
     alarmaService.getAlarmas($scope);
     
 })
-   
+
+//Controlador de los nuevos eventos que tiene el hotel
 .controller('homeCtrl', function($scope,events,$http,$state,$ionicPopup) {
 	events.getEvents($scope,$state,$ionicPopup);
 
 })
- 
+
+//Controlador de los eventos, muestra los detalles
+.controller('eventoCtrl', function($scope, events, $ionicPopup, $state, $http) {
+    $eventoID = $state.params.eventoID;
+    events.getDetalls($eventoID,$scope,$http,$state,$ionicPopup,$scope.data);
+
+})
